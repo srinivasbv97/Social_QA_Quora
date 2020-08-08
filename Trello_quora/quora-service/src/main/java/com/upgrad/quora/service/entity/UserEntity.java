@@ -64,14 +64,17 @@ public class UserEntity implements Serializable {
     private String salt;
 
     @Column(name = "country")
+    @NotNull
     @Size(max = 30)
     private String country;
 
     @Column(name = "aboutme")
+    @NotNull
     @Size(max = 50)
     private String aboutMe;
 
     @Column(name = "dob")
+    @NotNull
     @Size(max = 30)
     private String dob;
 
@@ -80,6 +83,7 @@ public class UserEntity implements Serializable {
     private String role;
 
     @Column(name = "contactnumber")
+    @NotNull
     @Size(max = 30)
     private String contactNumber;
 
