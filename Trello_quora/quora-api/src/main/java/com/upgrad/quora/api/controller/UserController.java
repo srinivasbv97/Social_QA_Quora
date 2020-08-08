@@ -1,8 +1,10 @@
 package com.upgrad.quora.api.controller;
 
+import com.upgrad.quora.service.business.SignupBusinessSevice;
 import com.upgrad.quora.api.model.SignupUserRequest;
 import com.upgrad.quora.api.model.SignupUserResponse;
 import com.upgrad.quora.service.entity.UserEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +17,10 @@ import java.util.UUID;
 @RestController
 @RequestMapping("/")
 public class UserController {
+
+    @Autowired
+    private SignupBusinessSevice signupBusinessService;
+
     @RequestMapping(method= RequestMethod.POST, path="/signup", consumes= MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<SignupUserResponse> signup(final SignupUserRequest signupUserRequest){
         final UserEntity userEntity = new UserEntity();
@@ -29,7 +35,7 @@ public class UserController {
         userEntity.setDob(signupUserRequest.getDob());
        userEntity.setContactNumber(signupUserRequest.getContactNumber());
 
-        final UserEntity createdUserEntity = signupBusinessService.signup(userEntity);
+        final UserEntity createdUserEntity = signupBusinessService.createUser(userEntity);
         SignupUserResponse userResponse = new SignupUserResponse().id(createdUserEntity.getUuid()).status("REGISTERED");
         return new ResponseEntity<SignupUserResponse>(userResponse, HttpStatus.CREATED);
     }
