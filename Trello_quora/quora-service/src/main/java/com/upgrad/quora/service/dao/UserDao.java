@@ -12,12 +12,12 @@ public class UserDao {
 
     @PersistenceContext
     private EntityManager entityManager;
-
+//Persist the data into DB, using DAO object
     public UserEntity createUser(UserEntity userEntity){
         entityManager.persist(userEntity);
         return userEntity;
     }
-
+//Returns null if UserEmail is not present in DB
     public String getUserByEmail(final String email) {
         try {
             UserEntity User_with_same_email = entityManager.createNamedQuery("userByEmail", UserEntity.class).setParameter("email", email)
@@ -27,7 +27,7 @@ public class UserDao {
             return null;
         }
     }
-
+//Return null if UserName is not present in DB
     public String getUserByUsername(final String username) {
         try {
             UserEntity User_with_same_Username = entityManager.createNamedQuery("userByUserName", UserEntity.class).setParameter("userName", username)

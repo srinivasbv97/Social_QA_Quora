@@ -16,11 +16,15 @@ public class SignupBusinessSevice {
 
     @Autowired
     private UserDao userDao;
-
+/*This Service Method uses DAO object to create new User in DB*/
     @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity createUser(final UserEntity userEntity) throws SignUpRestrictedException {
 String User_provided_username = userEntity.getUserName();
 String User_provided_email = userEntity.getEmail();
+
+/*Implementation is we check if User provide Username already exists in DB. if not present then we create else Exception
+is thrown. Similarly we check the same for User provided Email
+ */
         if (userDao.getUserByUsername(User_provided_username) != null) {
 
             throw new SignUpRestrictedException("SGR-001", "Try any other Username, this Username has already been taken");
