@@ -3,6 +3,7 @@ package com.upgrad.quora.api.controller;
 import com.upgrad.quora.api.model.SigninResponse;
 import com.upgrad.quora.api.model.SignupUserRequest;
 import com.upgrad.quora.api.model.SignupUserResponse;
+import com.upgrad.quora.service.business.SigninService;
 import com.upgrad.quora.service.business.SignupBusinessSevice;
 import com.upgrad.quora.service.entity.UserAuthEntity;
 import com.upgrad.quora.service.entity.UserEntity;
@@ -26,6 +27,9 @@ public class UserController {
 
     @Autowired
     private SignupBusinessSevice signupBusinessService;
+
+    @Autowired
+    private SigninService signinService;
 /*This is Post Method , mapped to "/signup", it recieves SignupUserRequest and returns SignupUserResponse. */
     @RequestMapping(method= RequestMethod.POST, path="user/signup", consumes= MediaType.APPLICATION_JSON_UTF8_VALUE, produces=MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<SignupUserResponse> signup(final SignupUserRequest signupUserRequest) throws SignUpRestrictedException {
@@ -55,7 +59,7 @@ public class UserController {
         String decodedText = new String(decode);
         String[] decodedArray = decodedText.split(":");
 
-        UserAuthEntity userAuthToken = authenticationService.authenticate(decodedArray[0],decodedArray[1]);
+        UserAuthEntity userAuthToken = signinService.authenticate(decodedArray[0],decodedArray[1]);
 
         UserEntity user = userAuthToken.getUser();
 
