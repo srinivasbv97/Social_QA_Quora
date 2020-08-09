@@ -7,6 +7,7 @@ import com.upgrad.quora.service.business.SigninService;
 import com.upgrad.quora.service.business.SignupBusinessSevice;
 import com.upgrad.quora.service.entity.UserAuthEntity;
 import com.upgrad.quora.service.entity.UserEntity;
+import com.upgrad.quora.service.exception.AuthenticationFailedException;
 import com.upgrad.quora.service.exception.SignUpRestrictedException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -52,18 +53,28 @@ public class UserController {
         return new ResponseEntity<SignupUserResponse>(userResponse, HttpStatus.CREATED);
     }
 
+    /*This is a Post metod, that accepts "authorization" Request Header and returns Respones with id, Message.
+    There is also Token provided in the header , for further endpoints authenication
+     */
     @RequestMapping(method = RequestMethod.POST, path = "/user/sigin",produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<SigninResponse> sigin(@RequestHeader("authorization") final String authorization){
+    public ResponseEntity<SigninResponse> sigin(@RequestHeader("authorization") final String authorization) throws AuthenticationFailedException {
 
+        /*Decoding Base64 Encoded authorization String into Byte[]*/
         byte[] decode = Base64.getDecoder().decode(authorization.split("Basic ")[1]);
         String decodedText = new String(decode);
+        /*Decoded String contains username:password, which is split in below manner*/
         String[] decodedArray = decodedText.split(":");
 
         UserAuthEntity userAuthToken = signinService.authenticate(decodedArray[0],decodedArray[1]);
 
-        UserEntity user = userAuthToken.getUser();
+        UserEntity user = userAuthToken.getUserEntity();
 
-        SigninResponse signinResponse = new SigninResponse().id(UUID.fromString(user.getUuid())).message("SIGNED IN SUCCESSFULLY");
+        /*UUID is to be passed as String */
+        UUID id_user = (UUID.fromString(user.getUuid()));
+        String UUID = id_user.toString();
+
+        /*Response Object with Response Body of id, Message and Header of JWT Token*/
+        SigninResponse signinResponse = new SigninResponse().id(UUID).message("SIGNED IN SUCCESSFULLY");
         HttpHeaders headers = new HttpHeaders();
         headers.add("access-token", userAuthToken.getAccessToken());
         return new ResponseEntity<SigninResponse>(signinResponse,headers, HttpStatus.OK);

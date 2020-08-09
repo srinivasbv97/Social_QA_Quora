@@ -39,7 +39,9 @@ public class UserDao {
             return null;
         }
     }
-
+    /*This method recieves the Username and returns UserEntity Object
+    for authenication of User.
+     */
     public UserEntity getUserByUsername_for_auth(final String username) {
         try {
             return entityManager.createNamedQuery("userByUserName", UserEntity.class).setParameter("userName", username)
