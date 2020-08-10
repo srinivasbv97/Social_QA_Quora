@@ -39,7 +39,7 @@ public class QuestionController {
         List<QuestionDetailsResponse> questionDetailResponses = new ArrayList<>();
         for (QuestionEntity questionEntity : questions) {
             QuestionDetailsResponse questionDetailResponse = new QuestionDetailsResponse();
-            questionDetailResponse.setUuid(questionEntity.getUuid());
+            questionDetailResponse.setId(questionEntity.getUuid());
             questionDetailResponse.setContent(questionEntity.getContent());
             questionDetailResponses.add(questionDetailResponse);
         }
@@ -68,7 +68,7 @@ public class QuestionController {
         List<QuestionDetailsResponse> questionDetailResponses = new ArrayList<>();
         for (QuestionEntity questionEntity : questions) {
             QuestionDetailsResponse questionDetailResponse = new QuestionDetailsResponse();
-            questionDetailResponse.setUuid(questionEntity.getUuid());
+            questionDetailResponse.setId(questionEntity.getUuid());
             questionDetailResponse.setContent(questionEntity.getContent());
             questionDetailResponses.add(questionDetailResponse);
         }

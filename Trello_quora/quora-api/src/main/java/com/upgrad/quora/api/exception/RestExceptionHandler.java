@@ -12,19 +12,19 @@ import org.springframework.web.context.request.WebRequest;
 @ControllerAdvice
 public class RestExceptionHandler {
 
-  @ExceptionHandler(UserNotFoundException.class)
-  public ResponseEntity<ErrorResponse> userNotFoundException(
-          UserNotFoundException exception, WebRequest request) {
-    return new ResponseEntity<>(
-            new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
-            HttpStatus.NOT_FOUND);
-  }
+    @ExceptionHandler(UserNotFoundException.class)
+    public ResponseEntity<ErrorResponse> userNotFoundException(
+            UserNotFoundException exception, WebRequest request) {
+        return new ResponseEntity<>(
+                new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
+                HttpStatus.NOT_FOUND);
+    }
 
-  @ExceptionHandler(AuthorizationFailedException.class)
-  public ResponseEntity<ErrorResponse> authorizationFailedException(
-          AuthorizationFailedException exception, WebRequest request) {
-    return new ResponseEntity<>(
-            new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
-            HttpStatus.FORBIDDEN);
-  }
+    @ExceptionHandler(AuthorizationFailedException.class)
+    public ResponseEntity<ErrorResponse> authorizationFailedException(
+            AuthorizationFailedException exception, WebRequest request) {
+        return new ResponseEntity<>(
+                new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
+                HttpStatus.FORBIDDEN);
+    }
 }
