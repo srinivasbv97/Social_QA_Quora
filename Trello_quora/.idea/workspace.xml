@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="47a15d9d-c79e-46a9-bbbf-df38ac55657d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/dataSources.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/sqldialects.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/controller/QuestionController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/exception/RestExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/model/ErrorResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/model/QuestionDetailsResponse.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/business/QuestionService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/dao/QuestionDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/dao/UserAuthDao.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/AnswerEntity.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/QuestionEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/Trello_quora.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Trello_quora.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-api/quora-api.iml" beforeDir="false" afterPath="$PROJECT_DIR$/quora-api/quora-api.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/exception/RestExceptionhandler.java" beforeDir="false" afterPath="$PROJECT_DIR$/quora-api/src/main/java/com/upgrad/quora/api/exception/RestExceptionhandler.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-db/quora-db.iml" beforeDir="false" afterPath="$PROJECT_DIR$/quora-db/quora-db.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-db/src/main/resources/config/localhost.properties" beforeDir="false" afterPath="$PROJECT_DIR$/quora-db/src/main/resources/config/localhost.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-service/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/quora-service/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-service/quora-service.iml" beforeDir="false" afterPath="$PROJECT_DIR$/quora-service/quora-service.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/dao/UserDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/dao/UserDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/UserAuthEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/UserAuthEntity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/UserEntity.java" beforeDir="false" afterPath="$PROJECT_DIR$/quora-service/src/main/java/com/upgrad/quora/service/entity/UserEntity.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="PropertiesComponent">
+    <property name="RequestMappingsPanelOrder0" value="0" />
+    <property name="RequestMappingsPanelOrder1" value="1" />
+    <property name="RequestMappingsPanelWidth0" value="75" />
+    <property name="RequestMappingsPanelWidth1" value="75" />
+    <property name="node.js.path.for.package.tslint" value="project" />
+    <property name="node.js.selected.package.tslint" value="(autodetect)" />
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <servers />
+  </component>
+  <component name="WindowStateProjectService">
+    <state width="1493" height="399" key="GridCell.Tab.0.bottom" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.0.bottom/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.0.center" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.0.center/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.0.left" timestamp="1597047953842">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.0.left/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953842" />
+    <state width="1493" height="399" key="GridCell.Tab.0.right" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.0.right/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.1.bottom" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.1.bottom/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.1.center" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.1.center/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.1.left" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.1.left/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+    <state width="1493" height="399" key="GridCell.Tab.1.right" timestamp="1597047953843">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state width="1493" height="399" key="GridCell.Tab.1.right/0.0.1366.728/1366.0.1536.824@0.0.1366.728" timestamp="1597047953843" />
+  </component>
+</project>

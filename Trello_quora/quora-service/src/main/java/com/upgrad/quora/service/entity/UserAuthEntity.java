@@ -1,6 +1,7 @@
 package com.upgrad.quora.service.entity;
 
 
+
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 import org.apache.commons.lang3.builder.ToStringBuilder;
@@ -11,12 +12,16 @@ import org.hibernate.annotations.OnDeleteAction;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
 import java.io.Serializable;
+
+
 import java.time.ZonedDateTime;
 
 @Entity
 @Table(name = "user_auth")
 @NamedQueries({
+
         @NamedQuery(
                 name = "userAuthByAccessToken",
                 query = "select u from UserAuthEntity u where u.accessToken=:accessToken")
@@ -123,4 +128,6 @@ public class UserAuthEntity implements Serializable {
     public String toString() {
         return ToStringBuilder.reflectionToString(this, ToStringStyle.MULTI_LINE_STYLE);
     }
+
+
 }
