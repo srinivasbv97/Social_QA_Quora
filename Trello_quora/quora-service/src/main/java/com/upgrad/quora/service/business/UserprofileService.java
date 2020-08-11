@@ -8,6 +8,8 @@ import com.upgrad.quora.service.exception.AuthorizationFailedException;
 import com.upgrad.quora.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserprofileService {
@@ -15,6 +17,7 @@ public class UserprofileService {
     @Autowired
     private UserDao userDao;
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public UserEntity getUserProfile(final String Uuid, final String authorization) throws UserNotFoundException, AuthorizationFailedException {
         UserEntity userEntity = userDao.getUserById(Uuid);
         UserAuthEntity userAuthEntity = userDao.getAuthToken(authorization);
@@ -26,7 +29,7 @@ public class UserprofileService {
             throw new AuthorizationFailedException("ATHR-001","User has not signed in");
         }
 
-        else if(userAuthEntity.getLoginAt() != null){
+        else if(userAuthEntity.getLogoutAt() != null){
             throw new AuthorizationFailedException("ATHR-002","User is signed out.Sign in first to get user details");
         }
         else{
