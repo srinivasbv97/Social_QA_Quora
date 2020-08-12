@@ -67,16 +67,8 @@ public class UserDao {
     }
 
 
-  public UserEntity getUserById(final String userId) {
-    try {
-      return entityManager
-          .createNamedQuery("userByUserId", UserEntity.class)
-          .setParameter("userId", userId)
-          .getSingleResult();
-    } catch (NoResultException nre) {
-      return null;
-    }
-  }
+
+
 
 
 
@@ -98,12 +90,7 @@ public class UserDao {
     }
   }
 
-  /**
-   * This methods gets the user details based on the email passed.
-   *
-   * @param email email of the user whose information is to be fetched.
-   * @return null if the user with given email doesn't exist in DB.
-   */
+
 
 
   public void updateUserEntity(final UserEntity updatedUserEntity) {
@@ -123,5 +110,32 @@ public class UserDao {
     }
     return deleteUser;
   }
+
+
+    public void updateuserAuthentity(final UserAuthEntity updatedUserAuthEntity){
+        entityManager.merge(updatedUserAuthEntity);
+    }
+
+    public UserAuthEntity getAuthToken(final String accessToken){
+        try {
+            return entityManager.createNamedQuery("userAuthByAccessToken", UserAuthEntity.class).setParameter("accessToken", accessToken)
+                    .getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
+
+
+
+    public UserEntity getUserById(final String userId) {
+        try {
+            return entityManager
+                    .createNamedQuery("userByUserId", UserEntity.class)
+                    .setParameter("userId", userId)
+                    .getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 
 }
