@@ -98,6 +98,7 @@ public class AnswerEntity {
     this.questionEntity = questionEntity;
   }
 
+
   @Override
   public boolean equals(Object obj) {
     return new EqualsBuilder().append(this, obj).isEquals();
