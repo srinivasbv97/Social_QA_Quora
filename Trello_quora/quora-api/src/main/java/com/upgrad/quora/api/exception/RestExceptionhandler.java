@@ -39,6 +39,14 @@ public class RestExceptionhandler {
                 HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(InvalidQuestionException.class)
+    public ResponseEntity<ErrorResponse> invalidQuestionException(
+            InvalidQuestionException exception, WebRequest request) {
+        return new ResponseEntity<>(
+                new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
+                HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(AuthorizationFailedException.class)
     public ResponseEntity<ErrorResponse> authorizationFailedException(
             AuthorizationFailedException exception, WebRequest request) {
