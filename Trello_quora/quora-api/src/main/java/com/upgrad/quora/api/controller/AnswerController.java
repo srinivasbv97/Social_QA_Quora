@@ -1,13 +1,11 @@
 package com.upgrad.quora.api.controller;
 
 
-import com.upgrad.quora.api.model.AnswerDetailsResponse;
-import com.upgrad.quora.api.model.AnswerEditRequest;
-import com.upgrad.quora.api.model.AnswerRequest;
-import com.upgrad.quora.api.model.AnswerResponse;
+import com.upgrad.quora.api.model.*;
 import com.upgrad.quora.service.business.AnswerService;
 import com.upgrad.quora.service.entity.AnswerEntity;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
+import com.upgrad.quora.service.exception.InvalidQuestionException;
 import com.upgrad.quora.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -53,7 +51,7 @@ public class AnswerController {
         return new ResponseEntity<AnswerResponse>(answerResponse, HttpStatus.CREATED);
     }
 
-    @RequestMapping(method = RequestMethod.GET, path = "/answer/all", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.GET, path = "/answer/all/{questionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AnswerDetailsResponse>> getAllAnswersToQuestion (@RequestHeader("authorization") final String accessToken,
                                                                            @PathVariable("questionId") String questionID)
             throws AuthorizationFailedException, UserNotFoundException
@@ -70,6 +68,14 @@ public class AnswerController {
 
     }
 
+    @RequestMapping(method = RequestMethod.DELETE, path = "/answer/delete/{answerId}")
+    public ResponseEntity<AnswerDeleteResponse> deleteAnswer(@RequestHeader("authorization") final String accessToken, @PathVariable("answerId") final String answerId) throws AuthorizationFailedException, InvalidQuestionException {
+        AnswerEntity questionEntity = answerService.deleteAnswer (accessToken, answerId);
+        AnswerDeleteResponse answerDeleteResponse = new AnswerDeleteResponse();
+        answerDeleteResponse.setId(questionEntity.getUuid());
+        answerDeleteResponse.setStatus("ANSWER DELETED!");
+        return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
+    }
 
 
 }
