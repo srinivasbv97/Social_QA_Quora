@@ -6,8 +6,8 @@ import com.upgrad.quora.service.dao.UserAuthDao;
 import com.upgrad.quora.service.entity.AnswerEntity;
 import com.upgrad.quora.service.entity.QuestionEntity;
 import com.upgrad.quora.service.entity.UserAuthEntity;
+import com.upgrad.quora.service.exception.AnswerNotFoundException;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
-import com.upgrad.quora.service.exception.InvalidQuestionException;
 import com.upgrad.quora.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -42,8 +42,7 @@ public class AnswerService {
     }
 //Delete Answer method.
 //@Transactional(propagation = Propagation.REQUIRED)
-public AnswerEntity deleteAnswer(final String accessToken, final String answerId) throws AuthorizationFailedException, InvalidQuestionException
-  {
+public AnswerEntity deleteAnswer(final String accessToken, final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
         UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
         if (userAuthEntity == null) {
             throw new AuthorizationFailedException("ANS-001", "User has not signed in");
@@ -53,7 +52,7 @@ public AnswerEntity deleteAnswer(final String accessToken, final String answerId
         }
         AnswerEntity answerEntity = answerDao.getAnswerById(answerId);
         if (answerEntity == null) {
-            throw new InvalidQuestionException("ANS-003", "Entered answer with uuid does not exist");
+            throw new AnswerNotFoundException("ANS-003", "Entered answer with uuid does not exist");
         }
         if (!answerEntity.getUserEntity().getUuid().equals(userAuthEntity.getUserEntity().getUuid())
                 && !userAuthEntity.getUserEntity().getRole().equals("admin")) {

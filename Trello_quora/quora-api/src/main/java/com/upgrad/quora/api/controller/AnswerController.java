@@ -4,8 +4,8 @@ package com.upgrad.quora.api.controller;
 import com.upgrad.quora.api.model.*;
 import com.upgrad.quora.service.business.AnswerService;
 import com.upgrad.quora.service.entity.AnswerEntity;
+import com.upgrad.quora.service.exception.AnswerNotFoundException;
 import com.upgrad.quora.service.exception.AuthorizationFailedException;
-import com.upgrad.quora.service.exception.InvalidQuestionException;
 import com.upgrad.quora.service.exception.UserNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,7 +23,9 @@ public class AnswerController {
    @Autowired
    private AnswerService answerService;
 
-  @RequestMapping(method = RequestMethod.POST, path = "/answer/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+
+   //Create answer
+     @RequestMapping(method = RequestMethod.POST, path = "/answer/create", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerResponse> createAnswer(@RequestHeader("authorization") final String accessToken, AnswerRequest answerRequest)throws AuthorizationFailedException
     {
         AnswerEntity answerEntity = new AnswerEntity();
@@ -51,6 +53,7 @@ public class AnswerController {
         return new ResponseEntity<AnswerResponse>(answerResponse, HttpStatus.CREATED);
     }
 
+    //Get all answers of question.
     @RequestMapping(method = RequestMethod.GET, path = "/answer/all/{questionId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<List<AnswerDetailsResponse>> getAllAnswersToQuestion (@RequestHeader("authorization") final String accessToken,
                                                                            @PathVariable("questionId") String questionID)
@@ -68,11 +71,12 @@ public class AnswerController {
 
     }
 
+    //Delete answer
     @RequestMapping(method = RequestMethod.DELETE, path = "/answer/delete/{answerId}")
-    public ResponseEntity<AnswerDeleteResponse> deleteAnswer(@RequestHeader("authorization") final String accessToken, @PathVariable("answerId") final String answerId) throws AuthorizationFailedException, InvalidQuestionException {
-        AnswerEntity questionEntity = answerService.deleteAnswer (accessToken, answerId);
+    public ResponseEntity<AnswerDeleteResponse> deleteAnswer(@RequestHeader("authorization") final String accessToken, @PathVariable("answerId") final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
+        AnswerEntity answerEntity = answerService.deleteAnswer (accessToken, answerId);
         AnswerDeleteResponse answerDeleteResponse = new AnswerDeleteResponse();
-        answerDeleteResponse.setId(questionEntity.getUuid());
+        answerDeleteResponse.setId(answerEntity.getUuid());
         answerDeleteResponse.setStatus("ANSWER DELETED!");
         return new ResponseEntity<AnswerDeleteResponse>(answerDeleteResponse, HttpStatus.OK);
     }
