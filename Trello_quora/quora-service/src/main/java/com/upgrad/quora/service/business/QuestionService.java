@@ -27,6 +27,8 @@ public class QuestionService {
 
   @Autowired private QuestionDao questionDao;
 
+ 
+
 
   /**
    * Gets all the questions in the DB.
@@ -38,7 +40,8 @@ public class QuestionService {
    */
   public List<QuestionEntity> getAllQuestions(final String accessToken)
           throws AuthorizationFailedException {
-    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
     if (userAuthEntity == null) {
       throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
     } else if (userAuthEntity.getLogoutAt() != null) {
@@ -59,7 +62,8 @@ public class QuestionService {
    */
   public List<QuestionEntity> getAllQuestionsByUser(final String userId, final String accessToken)
           throws AuthorizationFailedException, UserNotFoundException {
-    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
     if (userAuthEntity == null) {
       throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
     } else if (userAuthEntity.getLogoutAt() != null) {
@@ -86,7 +90,8 @@ public class QuestionService {
   @Transactional(propagation = Propagation.REQUIRED)
   public QuestionEntity createQuestion(QuestionEntity questionEntity, final String accessToken)
           throws AuthorizationFailedException {
-    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
     if (userAuthEntity == null) {
       throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
     } else if (userAuthEntity.getLogoutAt() != null) {
@@ -114,7 +119,8 @@ public class QuestionService {
   public QuestionEntity editQuestion(
           final String accessToken, final String questionId, final String content)
           throws AuthorizationFailedException, InvalidQuestionException {
-    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
     if (userAuthEntity == null) {
       throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
     } else if (userAuthEntity.getLogoutAt() != null) {
@@ -150,7 +156,8 @@ public class QuestionService {
   @Transactional(propagation = Propagation.REQUIRED)
   public QuestionEntity deleteQuestion(final String accessToken, final String questionId)
           throws AuthorizationFailedException, InvalidQuestionException {
-    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
     if (userAuthEntity == null) {
       throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
     } else if (userAuthEntity.getLogoutAt() != null) {
