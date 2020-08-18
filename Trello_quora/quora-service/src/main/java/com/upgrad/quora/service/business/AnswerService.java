@@ -64,7 +64,7 @@ public class AnswerService {
             throw new AuthorizationFailedException(
                     "ATHR-002", "User is signed out.Sign in first to delete an answer");
         }
-        
+
         if (question == null) {
             throw new InvalidQuestionException(
                     "QUES-001", "The question with entered uuid whose details are to be seen does not exist");
@@ -73,7 +73,7 @@ public class AnswerService {
     }
 
 //Delete Answer method.
-//@Transactional(propagation = Propagation.REQUIRED)
+@Transactional(propagation = Propagation.REQUIRED)
 public AnswerEntity deleteAnswer(final String accessToken, final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
         UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
         if (userAuthEntity == null) {
