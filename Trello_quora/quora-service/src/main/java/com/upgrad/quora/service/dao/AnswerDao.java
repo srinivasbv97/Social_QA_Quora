@@ -23,7 +23,7 @@ public class AnswerDao {
     public List<AnswerEntity> getAllAnswersByQuestion(final QuestionEntity questionId) {
         return entityManager
                 .createNamedQuery("getAllAnswersToQuestion", AnswerEntity.class)
-                .setParameter("uuid", questionId)
+                .setParameter("Question", questionId)
                 .getResultList();
     }
 
@@ -41,6 +41,10 @@ public class AnswerDao {
     }
 
     public void deleteAnswer(AnswerEntity answerEntity) {
+        entityManager.remove(answerEntity);
+    }
+
+    public void updateAnswer(AnswerEntity answerEntity) {
         entityManager.remove(answerEntity);
     }
 }
