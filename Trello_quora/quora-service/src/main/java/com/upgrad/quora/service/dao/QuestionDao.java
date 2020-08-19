@@ -43,7 +43,7 @@ public class QuestionDao {
   public QuestionEntity getQuestionById(final String questionId) {
     try {
       return entityManager
-          .createNamedQuery("getQuestionById", QuestionEntity.class)
+          .createNamedQuery("getAllAnswersToQuestion", QuestionEntity.class)
           .setParameter("uuid", questionId)
           .getSingleResult();
     } catch (NoResultException nre) {

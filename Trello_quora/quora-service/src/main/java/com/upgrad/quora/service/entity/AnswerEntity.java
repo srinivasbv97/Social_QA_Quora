@@ -18,7 +18,7 @@ import java.time.ZonedDateTime;
   @NamedQuery(name = "getAnswerById", query = "select a from AnswerEntity a where a.uuid=:uuid"),
   @NamedQuery(
       name = "getAllAnswersToQuestion",
-      query = "select a from AnswerEntity a where a.questionEntity.uuid = :uuid")
+      query = "select a from AnswerEntity a where a.questionEntity = :Question")
 })
 public class AnswerEntity {
   @Id
@@ -97,6 +97,7 @@ public class AnswerEntity {
   public void setQuestionEntity(QuestionEntity questionEntity) {
     this.questionEntity = questionEntity;
   }
+
 
   @Override
   public boolean equals(Object obj) {
