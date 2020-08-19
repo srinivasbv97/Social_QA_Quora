@@ -55,7 +55,8 @@ public class AnswerService {
     public List<AnswerEntity> getAllAnswersByQuestion(final String questionID, final String accessToken)
             throws AuthorizationFailedException, InvalidQuestionException {
 
-        UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+        String[] bearerToken = accessToken.split("Bearer ");
+        UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
         QuestionEntity question = questionDao.getQuestionById(questionID);
 
         if (userAuthEntity == null) {
@@ -75,7 +76,8 @@ public class AnswerService {
 //Delete Answer method.
 @Transactional(propagation = Propagation.REQUIRED)
 public AnswerEntity deleteAnswer(final String accessToken, final String answerId) throws AuthorizationFailedException, AnswerNotFoundException {
-        UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(accessToken);
+    String[] bearerToken = accessToken.split("Bearer ");
+    UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
         if (userAuthEntity == null) {
             throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
         } else if (userAuthEntity.getLogoutAt() != null) {
