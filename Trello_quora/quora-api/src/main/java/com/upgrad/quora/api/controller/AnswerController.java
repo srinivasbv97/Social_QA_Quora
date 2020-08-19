@@ -46,7 +46,7 @@ public class AnswerController {
 
 //Edit Answer endpoint.
 
-    @RequestMapping(method = RequestMethod.POST, path = "/answer/edit/{answerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @RequestMapping(method = RequestMethod.PUT, path = "/answer/edit/{answerId}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public ResponseEntity<AnswerEditResponse> editAnswerContent ( @RequestHeader("authorization") final String accessToken,
                                                               @PathVariable("answerId") final String answerId,
                                                               AnswerEditRequest answerEditRequest)
