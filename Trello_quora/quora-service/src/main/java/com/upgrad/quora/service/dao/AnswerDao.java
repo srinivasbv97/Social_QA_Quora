@@ -20,10 +20,10 @@ public class AnswerDao {
         return answerEntity;
     }
 
-    public List<AnswerEntity> getAllAnswersByQuestion(final QuestionEntity questionId) {
+    public List<AnswerEntity> getAllAnswersByQuestion(final QuestionEntity questionEntity) {
         return entityManager
                 .createNamedQuery("getAllAnswersToQuestion", AnswerEntity.class)
-                .setParameter("Question", questionId)
+                .setParameter("uuid", questionEntity.getUuid())
                 .getResultList();
     }
 

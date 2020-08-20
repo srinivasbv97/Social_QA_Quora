@@ -54,4 +54,12 @@ public class RestExceptionhandler {
                 new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
                 HttpStatus.FORBIDDEN);
     }
+
+    @ExceptionHandler(AnswerNotFoundException.class)
+    public ResponseEntity<ErrorResponse> answerNotFoundException(
+            AnswerNotFoundException exception, WebRequest request) {
+        return new ResponseEntity<>(
+                new ErrorResponse().code(exception.getCode()).message(exception.getErrorMessage()),
+                HttpStatus.NOT_FOUND);
+    }
 }

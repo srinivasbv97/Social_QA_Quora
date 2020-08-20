@@ -72,6 +72,7 @@ public class AnswerController {
         for (AnswerEntity answerEntity : answers) {
             AnswerDetailsResponse answerDetailResponses = new AnswerDetailsResponse();
             answerDetailResponses.setId(answerEntity.getUuid());
+            answerDetailResponses.setQuestionContent(answerEntity.getQuestionEntity().getContent());
             answerDetailResponses.setAnswerContent (answerEntity.getAnswer());
             ansDetailResponses.add(answerDetailResponses);
         }

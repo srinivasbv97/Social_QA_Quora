@@ -22,11 +22,14 @@ import java.util.UUID;
 public class AnswerService {
     @Autowired
     private AnswerDao answerDao;
+
+    @Autowired
     private QuestionDao questionDao;
 
     @Autowired
     private UserAuthDao userAuthDao;
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public AnswerEntity CreateAnswer (AnswerEntity answerEntity, final String accessToken, final String questionID) throws AuthorizationFailedException, InvalidQuestionException {
         String[] bearerToken = accessToken.split("Bearer ");
         UserAuthEntity userAuthEntity = userAuthDao.getUserAuthByToken(bearerToken[1]);
@@ -52,6 +55,7 @@ public class AnswerService {
 
     }
 
+    @Transactional(propagation = Propagation.REQUIRED)
     public List<AnswerEntity> getAllAnswersByQuestion(final String questionID, final String accessToken)
             throws AuthorizationFailedException, InvalidQuestionException {
 
@@ -63,7 +67,7 @@ public class AnswerService {
             throw new AuthorizationFailedException("ATHR-001", "User has not signed in");
         } else if (userAuthEntity.getLogoutAt() != null) {
             throw new AuthorizationFailedException(
-                    "ATHR-002", "User is signed out.Sign in first to delete an answer");
+                    "ATHR-002", "User is signed out.Sign in first to get the answers");
         }
 
         if (question == null) {
